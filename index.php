@@ -1,123 +1,49 @@
 <?php
-
-class Prodotto{
-    public $name;
-    public $price;
-    public $barCode;
-    public $categoria;
-    
-       
-    /**
-     * __construct
-     *
-     * @param  string $_name
-     * @param  int $_price
-     * @param  int $_barCode
-     * @param  string $_categoria
-     * @return void
-     */
-    function __construct($_name, $_price, $_barCode, $_categoria)
-    {
-        $this->name=$_name;
-        $this->price=$_price;
-        $this->barCode=$_barCode;
-        $this->setTarget($_categoria);
-    }
-    
-    /**
-     * setTarget
-     *
-     * @param  string $_categoria
-     * @return void
-     */
-    public function setTarget($_categoria){
-        if($_categoria === 'cani' || $_categoria === 'gatti'){
-            $this->categoria = $_categoria;
-        }
-
-    }
-}
-
-
-
-class Cibo extends Prodotto{
-    public $fasciaEta;
-    public $aBaseDi;
-    
-         
-    /**
-     * __construct
-     *
-     * @param  string $_name
-     * @param  int $_price
-     * @param  int $_barCode
-     * @param  string $_categoria
-     * @param  string $_fasciaEta
-     * @param  string $_aBaseDi
-     * @return void
-     */
-    function __construct($_name, $_price, $_barCode, $_categoria,$_fasciaEta,$_aBaseDi)
-    {
-        parent::__construct($_name, $_price, $_barCode, $_categoria);
-        $this->fasciaEta = $_fasciaEta;
-        $this->aBaseDi = $_aBaseDi;
-    }
-
-}
-
-class Gioco extends Prodotto{
-    public $colore;
-    public $peso;
-    
-     
-        
-    /**
-     * __construct
-     *
-     * @param  string $_name
-     * @param  int $_price
-     * @param  int $_barCode
-     * @param  string $_categoria
-     * @param  string $_colore
-     * @param  int $_peso
-     * @return void
-     */
-    function __construct($_name, $_price, $_barCode, $_categoria,$_colore,$_peso)
-    {
-        parent::__construct($_name, $_price, $_barCode, $_categoria);
-        $this->colore = $_colore;
-        $this->peso = $_peso;
-    }
-
-}
-
-class Cuccia extends Prodotto{
-    public $lunghezza;
-    public $larghezza;
-    
-     
-    /**
-     * __construct
-     *
-     * @param  string $_name
-     * @param  int $_price
-     * @param  int $_barCode
-     * @param  string $_categoria
-     * @param  int $_lunghezza
-     * @param  int $_larghezza
-     * @return void
-     */
-    function __construct($_name, $_price, $_barCode, $_categoria,$_lunghezza,$_larghezza)
-    {
-        parent::__construct($_name, $_price, $_barCode, $_categoria);
-        $this->lunghezza = $_lunghezza;
-        $this->larghezza = $_larghezza;
-    }
-
-}
-
-$prova = new Prodotto('crocchette',20, 1246465,'cani');
-$cibo = new Cibo('crocchette',20, 1246465,'cani','adulto','pollo e tacchino');
-var_dump($prova);
-var_dump($cibo);
+require_once __DIR__.'/database/db.php';
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prodotti per Cani e Gatti</title>
+    <!-- My Css -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Prodotti per cani e gatti</h1>
+        </div>
+    </header>
+    <main>
+        <ul class="products container">
+            <?php foreach($products as $product): ?>
+            <li class="product">
+                <h2><span class="key">Nome: </span><?php echo $product->name?></h2>
+                <h2><span class="key">Prezzo: </span><?php echo $product->price?>€</h2>
+                <h2><span class="key">Categoria: </span> 
+                <?php if($product->categoria === 'cani'): ?>
+                    &#128054;
+                <?php elseif($product->categoria === 'gatti'): ?>
+                    &#128008;
+                <?php endif; ?>
+                <?php if($product->tipoDiProdotto === 'cibo'): ?>
+                    <h2><span class="key">Fascia d'età: </span><?php echo $product->fasciaEta?></h2>
+                    <h2><span class="key">A base di: </span><?php echo $product->aBaseDi?></h2>
+                <?php elseif($product->tipoDiProdotto === 'gioco'): ?>
+                    <h2><span class="key">Colore: </span><?php echo $product->colore?></h2>
+                    <h2><span class="key">Peso: </span><?php echo $product->peso?>kg</h2>
+                <?php elseif($product->tipoDiProdotto === 'cuccia'): ?>   
+                    <h2><span class="key">Lunghezza: </span><?php echo $product->lunghezza?>cm</h2>
+                    <h2><span class="key">Larghezza: </span><?php echo $product->larghezza?>cm</h2>
+                <? endif; ?>
+                <h2><span class="key">Tipologia: </span><?php echo $product->tipoDiProdotto?></h2>
+                <img src="<?php echo $product->immagine?>" alt="">
+                </li>
+            <? endforeach; ?>
+        </ul>
+    </main>
+</body>
+</html>
