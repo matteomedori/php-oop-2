@@ -44,10 +44,11 @@ h1 {
 
 .product {
   width: calc((100% - 60px) / 4);
-  border: 2px dashed black;
-  border-radius: 5px;
+  border-radius: 15px 15px 15px 15px;
   background-color: white;
   text-align: center;
+  box-shadow: 6px 4px #000000;
+  overflow: hidden;
 }
 
 .key {
