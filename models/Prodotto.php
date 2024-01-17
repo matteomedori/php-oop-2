@@ -38,6 +38,8 @@ class Prodotto{
     public function setCategoria($_categoria){
         if($_categoria === 'cani' || $_categoria === 'gatti'){
             $this->categoria = $_categoria;
+        }else{
+            throw new Exception('Hai inserito una categoria che non è cani o gatti');
         }
     }
 
@@ -48,6 +50,8 @@ class Prodotto{
     public function setTipoDiProdotto($_tipoDiProdotto){
         if($_tipoDiProdotto === 'cibo' || $_tipoDiProdotto === 'cuccia' || $_tipoDiProdotto === 'gioco'){
             $this->tipoDiProdotto = $_tipoDiProdotto;
+        }else{
+            throw new Exception('Hai inserito un prodotto che non è cuccia,cibo o gioco');
         }
     }
 

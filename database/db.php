@@ -5,8 +5,19 @@ require_once __DIR__.'/../models/Gioco.php';
 require_once __DIR__.'/../models/Cuccia.php';
 
 $crocchette_aabb = new Cibo('Crocchette Aabb',19.99, 1246465, 'https://m.media-amazon.com/images/I/81C3Z9OACqL._AC_UF1000,1000_QL80_.jpg', 'adulto','pollo e tacchino');
-$crocchette_aabb->setCategoria('cani');
-$crocchette_aabb->setTipoDiProdotto('cibo');
+try{
+    $crocchette_aabb->setCategoria('cani');
+}
+catch(Exception $e){
+    var_dump($e->getMessage());
+}
+
+try{
+    $crocchette_aabb->setTipoDiProdotto('cibo');
+}
+catch(Exception $e){
+    var_dump($e->getMessage());
+}
 
 $corda_rossa = new Gioco('Corda rossa',5.50, 1246465, 'https://m.media-amazon.com/images/I/814BZu2szUL._AC_UF1000,1000_QL80_.jpg', 'rosso','2');
 $corda_rossa->setCategoria('cani');
