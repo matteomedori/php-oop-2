@@ -21,26 +21,26 @@ require_once __DIR__.'/database/db.php';
         <ul class="products container">
             <?php foreach($products as $product): ?>
             <li class="product">
-                <h2><span class="key">Nome: </span><?php echo $product->name?></h2>
-                <h2><span class="key">Prezzo: </span><?php echo $product->price?>€</h2>
+                <h2><span class="key">Nome: </span><?php echo $product->getName()?></h2>
+                <h2><span class="key">Prezzo: </span><?php echo $product->getPrice()?>€</h2>
                 <h2><span class="key">Categoria: </span> 
-                <?php if($product->categoria === 'cani'): ?>
+                <?php if($product->getCategoria() === 'cani'): ?>
                     &#128054;
-                <?php elseif($product->categoria === 'gatti'): ?>
+                <?php elseif($product->getCategoria() === 'gatti'): ?>
                     &#128008;
                 <?php endif; ?>
-                <?php if($product->tipoDiProdotto === 'cibo'): ?>
+                <?php if($product->getTipoDiProdotto() === 'cibo'): ?>
                     <h2><span class="key">Fascia d'età: </span><?php echo $product->fasciaEta?></h2>
                     <h2><span class="key">A base di: </span><?php echo $product->aBaseDi?></h2>
-                <?php elseif($product->tipoDiProdotto === 'gioco'): ?>
-                    <h2><span class="key">Colore: </span><?php echo $product->colore?></h2>
-                    <h2><span class="key">Peso: </span><?php echo $product->peso?>kg</h2>
-                <?php elseif($product->tipoDiProdotto === 'cuccia'): ?>   
+                <?php elseif($product->getTipoDiProdotto() === 'gioco'): ?>
+                    <h2><span class="key">Colore: </span><?php echo $product->getColore()?></h2>
+                    <h2><span class="key">Peso: </span><?php echo $product->getPeso()?>kg</h2>
+                <?php elseif($product->getTipoDiProdotto() === 'cuccia'): ?>   
                     <h2><span class="key">Lunghezza: </span><?php echo $product->lunghezza?>cm</h2>
                     <h2><span class="key">Larghezza: </span><?php echo $product->larghezza?>cm</h2>
                 <? endif; ?>
-                <h2><span class="key">Tipologia: </span><?php echo $product->tipoDiProdotto?></h2>
-                <img src="<?php echo $product->immagine?>" alt="">
+                <h2><span class="key">Tipologia: </span><?php echo $product->getTipoDiProdotto()?></h2>
+                <img src="<?php echo $product->getImmagine()?>" alt="">
                 </li>
             <? endforeach; ?>
         </ul>

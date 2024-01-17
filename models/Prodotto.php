@@ -1,7 +1,9 @@
 <?php
 
+require_once __DIR__.'/../traits/Name.php';
 class Prodotto{
-    private $name;
+    use Name;
+    // private $name;
     private $price;
     private $barCode;
     private $categoria;
@@ -21,9 +23,9 @@ class Prodotto{
 
     // setters
 
-    public function setName($_name){
-        $this->name = $_name;
-    }
+    // public function setName($_name){
+    //     $this->name = $_name;
+    // }
 
     public function setPrice($_price){
         $this->price = $_price;
@@ -51,9 +53,9 @@ class Prodotto{
 
     // getters
 
-    public function getName(){
-        return $this->name;
-    }
+    // public function getName(){
+    //     return $this->name;
+    // }
 
     public function getPrice(){
         return $this->price;
