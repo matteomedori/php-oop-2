@@ -1,58 +1,77 @@
 <?php
 
 class Prodotto{
-    public $name;
-    public $price;
-    public $barCode;
-    public $categoria;
-    public $immagine;
-    public $tipoDiProdotto;
+    private $name;
+    private $price;
+    private $barCode;
+    private $categoria;
+    private $immagine;
+    private $tipoDiProdotto;
     
-       
-    /**
-     * __construct
-     *
-     * @param  string $_name
-     * @param  float $_price
-     * @param  int $_barCode
-     * @param  string $_categoria
-     * @param  string $_immagine
-     * @param  string $_tipoDiProdotto
-     * @return void
-     */
-    function __construct($_name, $_price, $_barCode, $_categoria, $_immagine, $_tipoDiProdotto)
+
+    // constructor
+
+    function __construct($_name, $_price, $_barCode, $_immagine)
     {
         $this->name=$_name;
         $this->price=$_price;
         $this->barCode=$_barCode;
         $this->immagine=$_immagine;
-        $this->setTarget($_categoria);
-        $this->setTipoDiProdotto($_tipoDiProdotto);
     }
-    
-    /**
-     * setTarget
-     *
-     * @param  string $_categoria
-     * @return void
-     */
-    public function setTarget($_categoria){
+
+    // setters
+
+    public function setName($_name){
+        $this->name = $_name;
+    }
+
+    public function setPrice($_price){
+        $this->price = $_price;
+    }
+
+    public function setBarCode($_barCode){
+        $this->barCode = $_barCode;
+    }
+
+    public function setCategoria($_categoria){
         if($_categoria === 'cani' || $_categoria === 'gatti'){
             $this->categoria = $_categoria;
         }
-
     }
-    
-    /**
-     * setTipoDiProdotto
-     *
-     * @param  string $_tipoDiProdotto
-     * @return void
-     */
+
+    public function setImmagine($_immagine){
+        $this->immagine = $_immagine;
+    }
+
     public function setTipoDiProdotto($_tipoDiProdotto){
         if($_tipoDiProdotto === 'cibo' || $_tipoDiProdotto === 'cuccia' || $_tipoDiProdotto === 'gioco'){
             $this->tipoDiProdotto = $_tipoDiProdotto;
         }
+    }
 
+    // getters
+
+    public function getName(){
+        return $this->name;
+    }
+
+    public function getPrice(){
+        return $this->price;
+    }
+
+    public function getBarCode(){
+        return $this->barCode;
+    }
+
+    public function getCategoria(){
+        return $this->categoria;
+    }
+
+    public function getImmagine(){
+        return $this->immagine;
+    }
+
+    public function getTipoDiProdotto(){
+        return $this->tipoDiProdotto;
     }
 }
